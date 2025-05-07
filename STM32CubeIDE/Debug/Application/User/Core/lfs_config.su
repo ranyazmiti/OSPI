@@ -1,4 +1,4 @@
-../Application/User/Core/lfs_config.c:10:5:user_provided_block_device_read	32	static
-../Application/User/Core/lfs_config.c:19:5:user_provided_block_device_prog	32	static
-../Application/User/Core/lfs_config.c:28:5:user_provided_block_device_erase	24	static
-../Application/User/Core/lfs_config.c:34:5:user_provided_block_device_sync	16	static
+../Application/User/Core/lfs_config.c:11:5:user_provided_block_device_read	32	static
+../Application/User/Core/lfs_config.c:20:5:user_provided_block_device_prog	32	static
+../Application/User/Core/lfs_config.c:29:5:user_provided_block_device_erase	24	static
+../Application/User/Core/lfs_config.c:35:5:user_provided_block_device_sync	16	static

@@ -1,6 +1,7 @@
 #include "lfs.h"
 #include <string.h>
 #include "ospi_driver.h"
+#include "xspi_driver.h"
 
 #define BLOCK_SIZE       256
 #define BLOCK_COUNT      128
@@ -13,7 +14,7 @@ int user_provided_block_device_read(const struct lfs_config *c,
                                     void *buffer,
                                     lfs_size_t size) {
     uint32_t addr = OSPI_BASE_ADDR + block * c->block_size + offset;
-    return OSPI_Read(buffer, addr, size);
+    return XSPI_Read(buffer, addr, size);
 }
 
 int user_provided_block_device_prog(const struct lfs_config *c,
@@ -22,13 +23,13 @@ int user_provided_block_device_prog(const struct lfs_config *c,
                                     const void *buffer,
                                     lfs_size_t size) {
     uint32_t addr = OSPI_BASE_ADDR + block * c->block_size + offset;
-    return OSPI_Write(buffer, addr, size);
+    return XSPI_Write(buffer, addr, size);
 }
 
 int user_provided_block_device_erase(const struct lfs_config *c,
                                      lfs_block_t block) {
     uint32_t addr = OSPI_BASE_ADDR + block * c->block_size;
-    return OSPI_Erase_Block(addr);
+    return XSPI_Erase_Block(addr);
 }
 
 int user_provided_block_device_sync(const struct lfs_config *c) {

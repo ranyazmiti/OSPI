@@ -7,7 +7,7 @@ int XSPI_Init(void) {
     return 0;
 }
 
-int XSPI_EraseSector(uint32_t address) {
+int XSPI_Erase_Block(uint32_t address) {
     XSPI_RegularCmdTypeDef sCommand = {0};
 
     sCommand.OperationType      = HAL_XSPI_OPTYPE_COMMON_CFG;
