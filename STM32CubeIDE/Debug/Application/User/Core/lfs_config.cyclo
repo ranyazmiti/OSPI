@@ -1,0 +1,4 @@
+../Application/User/Core/lfs_config.c:10:5:user_provided_block_device_read	1
+../Application/User/Core/lfs_config.c:19:5:user_provided_block_device_prog	1
+../Application/User/Core/lfs_config.c:28:5:user_provided_block_device_erase	1
+../Application/User/Core/lfs_config.c:34:5:user_provided_block_device_sync	1

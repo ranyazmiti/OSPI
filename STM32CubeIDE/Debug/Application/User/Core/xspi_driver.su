@@ -1,0 +1,4 @@
+../Application/User/Core/xspi_driver.c:5:5:XSPI_Init	4	static
+../Application/User/Core/xspi_driver.c:10:5:XSPI_EraseSector	96	static
+../Application/User/Core/xspi_driver.c:32:5:XSPI_Write	104	static
+../Application/User/Core/xspi_driver.c:57:5:XSPI_Read	104	static
