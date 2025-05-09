@@ -1,39 +1,27 @@
 #include "lfs.h"
-#include <string.h>
-#include "ospi_driver.h"
+#include "lfs_util.h"
 #include "xspi_driver.h"
+#include <string.h>
+#include "lfs_config.h"
 
-#define BLOCK_SIZE       256
-#define BLOCK_COUNT      128
-#define OSPI_BASE_ADDR   0x90000000
+#define BLOCK_SIZE  4096
+#define BLOCK_COUNT (64UL * 1024 * 1024 / BLOCK_SIZE)
+#define OSPI_BASE_ADDR 0x90000000
 
-
-int user_provided_block_device_read(const struct lfs_config *c,
-                                    lfs_block_t block,
-                                    lfs_off_t offset,
-                                    void *buffer,
-                                    lfs_size_t size) {
-    uint32_t addr = OSPI_BASE_ADDR + block * c->block_size + offset;
-    return XSPI_Read(buffer, addr, size);
+int user_provided_block_device_read(const struct lfs_config *c, lfs_block_t block, lfs_off_t offset, void *buffer, lfs_size_t size) {
+    return xspi_read(c, block, offset, buffer, size);
 }
 
-int user_provided_block_device_prog(const struct lfs_config *c,
-                                    lfs_block_t block,
-                                    lfs_off_t offset,
-                                    const void *buffer,
-                                    lfs_size_t size) {
-    uint32_t addr = OSPI_BASE_ADDR + block * c->block_size + offset;
-    return XSPI_Write(buffer, addr, size);
+int user_provided_block_device_prog(const struct lfs_config *c, lfs_block_t block, lfs_off_t offset, const void *buffer, lfs_size_t size) {
+    return xspi_write(c, block, offset, buffer, size);
 }
 
-int user_provided_block_device_erase(const struct lfs_config *c,
-                                     lfs_block_t block) {
-    uint32_t addr = OSPI_BASE_ADDR + block * c->block_size;
-    return XSPI_Erase_Block(addr);
+int user_provided_block_device_erase(const struct lfs_config *c, lfs_block_t block) {
+    return xspi_erase(c, block);
 }
 
 int user_provided_block_device_sync(const struct lfs_config *c) {
-    return 0;
+    return xspi_sync(c);
 }
 
 struct lfs_config cfg = {
@@ -50,5 +38,3 @@ struct lfs_config cfg = {
     .lookahead_size = 16,
     .block_cycles = 1000,
 };
-
-

@@ -1,5 +1,5 @@
 Application/User/Core/stm32h5xx_it.o: \
- C:/Users/amalo/Desktop/pfa/OSPI/Core/Src/stm32h5xx_it.c \
+ C:/Users/hp/Desktop/pfa/essai_OSPI/Core/Src/stm32h5xx_it.c \
  ../../Core/Inc/main.h \
  ../../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal.h \
  ../../Core/Inc/stm32h5xx_hal_conf.h \

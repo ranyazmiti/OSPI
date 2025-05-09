@@ -55,7 +55,7 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-extern XSPI_HandleTypeDef hospi1;
+
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -197,20 +197,6 @@ void SysTick_Handler(void)
 /* For the available peripheral interrupt handler names,                      */
 /* please refer to the startup file (startup_stm32h5xx.s).                    */
 /******************************************************************************/
-
-/**
-  * @brief This function handles OCTOSPI1 global interrupt.
-  */
-void OCTOSPI1_IRQHandler(void)
-{
-  /* USER CODE BEGIN OCTOSPI1_IRQn 0 */
-
-  /* USER CODE END OCTOSPI1_IRQn 0 */
-  HAL_XSPI_IRQHandler(&hospi1);
-  /* USER CODE BEGIN OCTOSPI1_IRQn 1 */
-
-  /* USER CODE END OCTOSPI1_IRQn 1 */
-}
 
 /* USER CODE BEGIN 1 */
 

@@ -1,4 +1,4 @@
-../Application/User/Core/xspi_driver.c:5:5:XSPI_Init	4	static
-../Application/User/Core/xspi_driver.c:10:5:XSPI_Erase_Block	96	static
-../Application/User/Core/xspi_driver.c:32:5:XSPI_Write	104	static
-../Application/User/Core/xspi_driver.c:57:5:XSPI_Read	104	static
+../Application/User/Core/xspi_driver.c:9:5:xspi_read	32	static
+../Application/User/Core/xspi_driver.c:17:5:xspi_write	24	static
+../Application/User/Core/xspi_driver.c:25:5:xspi_erase	16	static
+../Application/User/Core/xspi_driver.c:33:5:xspi_sync	16	static

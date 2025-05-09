@@ -21,15 +21,18 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "lfs_util.h"
 #include "lfs.h"
+#include "lfs_util.h"
 #include "xspi_driver.h"
+#include <string.h>
+
 
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+#define USER_LED2        GPIO_PIN_8
+#define USER_LED2_GPIO_Port  GPIOI
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -50,7 +53,7 @@ DMA_HandleTypeDef handle_GPDMA1_Channel0;
 XSPI_HandleTypeDef hospi1;
 
 /* USER CODE BEGIN PV */
-
+extern struct lfs_config cfg;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -59,8 +62,6 @@ static void MX_GPIO_Init(void);
 static void MX_GPDMA1_Init(void);
 static void MX_ICACHE_Init(void);
 static void MX_OCTOSPI1_Init(void);
-lfs_t lfs;
-extern struct lfs_config cfg;
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -74,7 +75,6 @@ extern struct lfs_config cfg;
   * @brief  The application entry point.
   * @retval int
   */
-
 int main(void)
 {
 
@@ -103,32 +103,46 @@ int main(void)
   MX_GPDMA1_Init();
   MX_ICACHE_Init();
   MX_OCTOSPI1_Init();
-  if (lfs_mount(&lfs, &cfg) != 0) {
-        lfs_format(&lfs, &cfg);
-        lfs_mount(&lfs, &cfg);
+  /* USER CODE BEGIN 2 */
+    lfs_t lfs;
+    int err = lfs_mount(&lfs, &cfg);
+
+    if (err) {
+        err = lfs_format(&lfs, &cfg);
+        if (err) {
+            HAL_GPIO_WritePin(USER_LED2_GPIO_Port, USER_LED2, GPIO_PIN_RESET);
+            while (1);
+        }
+        err = lfs_mount(&lfs, &cfg);
+        if (err) {
+            HAL_GPIO_WritePin(USER_LED2_GPIO_Port, USER_LED2, GPIO_PIN_RESET);
+            while (1);
+        }
     }
 
     lfs_file_t file;
-    const char *message = "Hello LittleFS via OSPI!";
-    lfs_file_open(&lfs, &file, "test.txt", LFS_O_WRONLY | LFS_O_CREAT);
-    lfs_file_write(&lfs, &file, message, strlen(message));
+    const char *text = "Bonjour OSPI !";
+
+    err = lfs_file_open(&lfs, &file, "monfichier.txt", LFS_O_WRONLY | LFS_O_CREAT);
+    if (err) {
+        HAL_GPIO_WritePin(USER_LED2_GPIO_Port, USER_LED2, GPIO_PIN_RESET);
+        while (1);
+    }
+
+    lfs_file_write(&lfs, &file, text, strlen(text));
     lfs_file_close(&lfs, &file);
 
-    char buffer[64] = {0};
-    lfs_file_open(&lfs, &file, "test.txt", LFS_O_RDONLY);
-    lfs_file_read(&lfs, &file, buffer, sizeof(buffer));
-    lfs_file_close(&lfs, &file);
-
-    printf("Lu depuis LittleFS: %s\n", buffer);
-  /* USER CODE BEGIN 2 */
-
+    while (1) {
+        HAL_GPIO_TogglePin(USER_LED2_GPIO_Port, USER_LED2);
+        HAL_Delay(5000);
+    }
   /* USER CODE END 2 */
+
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
-  {HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-  HAL_Delay(500);
+  {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -309,7 +323,7 @@ static void MX_OCTOSPI1_Init(void)
   hospi1.Init.FifoThresholdByte = 1;
   hospi1.Init.MemoryMode = HAL_XSPI_SINGLE_MEM;
   hospi1.Init.MemoryType = HAL_XSPI_MEMTYPE_MICRON;
-  hospi1.Init.MemorySize = HAL_XSPI_SIZE_16B;
+  hospi1.Init.MemorySize = HAL_XSPI_SIZE_512MB;
   hospi1.Init.ChipSelectHighTimeCycle = 1;
   hospi1.Init.FreeRunningClock = HAL_XSPI_FREERUNCLK_DISABLE;
   hospi1.Init.ClockMode = HAL_XSPI_CLOCK_MODE_0;
@@ -337,22 +351,31 @@ static void MX_OCTOSPI1_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
   /* USER CODE BEGIN MX_GPIO_Init_1 */
-
   /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOG_CLK_ENABLE();
-  __HAL_RCC_GPIOD_CLK_ENABLE();
-  __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOE_CLK_ENABLE();
-  __HAL_RCC_GPIOC_CLK_ENABLE();
-  __HAL_RCC_GPIOF_CLK_ENABLE();
+  __HAL_RCC_GPIOI_CLK_ENABLE();
   __HAL_RCC_GPIOH_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOF_CLK_ENABLE();
+  __HAL_RCC_GPIOD_CLK_ENABLE();
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOI, GPIO_PIN_8, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : USER_LED2_Pin */
+  GPIO_InitStruct.Pin = USER_LED2;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(USER_LED2_GPIO_Port, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
-
   /* USER CODE END MX_GPIO_Init_2 */
 }
 
