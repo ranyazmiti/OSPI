@@ -1,3 +1,0 @@
-C:/Users/hp/Desktop/pfa/essai_OSPI/Core/Src/stm32h5xx_hal_msp.c:63:6:HAL_MspInit	4	static
-C:/Users/hp/Desktop/pfa/essai_OSPI/Core/Src/stm32h5xx_hal_msp.c:83:6:HAL_XSPI_MspInit	336	static
-C:/Users/hp/Desktop/pfa/essai_OSPI/Core/Src/stm32h5xx_hal_msp.c:202:6:HAL_XSPI_MspDeInit	16	static

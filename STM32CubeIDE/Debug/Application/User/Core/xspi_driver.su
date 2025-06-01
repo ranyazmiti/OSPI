@@ -1,4 +1,0 @@
-../Application/User/Core/xspi_driver.c:9:5:xspi_read	32	static
-../Application/User/Core/xspi_driver.c:17:5:xspi_write	24	static
-../Application/User/Core/xspi_driver.c:25:5:xspi_erase	16	static
-../Application/User/Core/xspi_driver.c:33:5:xspi_sync	16	static
