@@ -25,6 +25,8 @@
 #include "lfs_util.h"
 #include "xspi_driver.h"
 #include <string.h>
+#include "lfs_config.h"
+
 
 
 /* USER CODE END Includes */
@@ -104,6 +106,8 @@ int main(void)
   MX_ICACHE_Init();
   MX_OCTOSPI1_Init();
   /* USER CODE BEGIN 2 */
+  lfs_config_init(); // ← remplace tout appel BSP ici
+
     lfs_t lfs;
     int err = lfs_mount(&lfs, &cfg);
 

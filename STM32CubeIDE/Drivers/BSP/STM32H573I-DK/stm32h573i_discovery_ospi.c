@@ -64,6 +64,9 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32h573i_discovery_ospi.h"
+#include "stm32h5xx_hal.h"
+#include <stdint.h>
+
 
 /** @addtogroup BSP
   * @{

@@ -1,0 +1,7 @@
+../Application/User/Core/xspi_driver.c:16:5:xspi_hw_read	3
+../Application/User/Core/xspi_driver.c:37:5:xspi_hw_write	3
+../Application/User/Core/xspi_driver.c:57:5:xspi_hw_erase	2
+../Application/User/Core/xspi_driver.c:77:5:xspi_read	2
+../Application/User/Core/xspi_driver.c:82:5:xspi_write	2
+../Application/User/Core/xspi_driver.c:87:5:xspi_erase	2
+../Application/User/Core/xspi_driver.c:92:5:xspi_sync	1

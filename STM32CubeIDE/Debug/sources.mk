@@ -25,6 +25,12 @@ SUBDIRS := \
 Application/User/Core \
 Application/User/Startup \
 Application/littlefs \
+Drivers/BSP/Components/cs42l51 \
+Drivers/BSP/Components/lan8742 \
+Drivers/BSP/Components/mx25lm51245g \
+Drivers/BSP/Components/st7789h2 \
+Drivers/BSP/Components/tcpp0203 \
+Drivers/BSP/STM32H573I-DK \
 Drivers/CMSIS \
 Drivers/STM32H5xx_HAL_Driver \
 

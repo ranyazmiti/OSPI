@@ -11,6 +11,12 @@ RM := rm -rf
 -include sources.mk
 -include Drivers/STM32H5xx_HAL_Driver/subdir.mk
 -include Drivers/CMSIS/subdir.mk
+-include Drivers/BSP/STM32H573I-DK/subdir.mk
+-include Drivers/BSP/Components/tcpp0203/subdir.mk
+-include Drivers/BSP/Components/st7789h2/subdir.mk
+-include Drivers/BSP/Components/mx25lm51245g/subdir.mk
+-include Drivers/BSP/Components/lan8742/subdir.mk
+-include Drivers/BSP/Components/cs42l51/subdir.mk
 -include Application/littlefs/subdir.mk
 -include Application/User/Startup/subdir.mk
 -include Application/User/Core/subdir.mk
