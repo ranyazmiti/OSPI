@@ -5,13 +5,13 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Drivers/BSP/STM32H573I-DK/stm32h573i_discovery_ospi.c 
+../Drivers/BSP/STM32H573I-DK/stm32h573i_discovery_xspi.c 
 
 OBJS += \
-./Drivers/BSP/STM32H573I-DK/stm32h573i_discovery_ospi.o 
+./Drivers/BSP/STM32H573I-DK/stm32h573i_discovery_xspi.o 
 
 C_DEPS += \
-./Drivers/BSP/STM32H573I-DK/stm32h573i_discovery_ospi.d 
+./Drivers/BSP/STM32H573I-DK/stm32h573i_discovery_xspi.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -21,7 +21,7 @@ Drivers/BSP/STM32H573I-DK/%.o Drivers/BSP/STM32H573I-DK/%.su Drivers/BSP/STM32H5
 clean: clean-Drivers-2f-BSP-2f-STM32H573I-2d-DK
 
 clean-Drivers-2f-BSP-2f-STM32H573I-2d-DK:
-	-$(RM) ./Drivers/BSP/STM32H573I-DK/stm32h573i_discovery_ospi.cyclo ./Drivers/BSP/STM32H573I-DK/stm32h573i_discovery_ospi.d ./Drivers/BSP/STM32H573I-DK/stm32h573i_discovery_ospi.o ./Drivers/BSP/STM32H573I-DK/stm32h573i_discovery_ospi.su
+	-$(RM) ./Drivers/BSP/STM32H573I-DK/stm32h573i_discovery_xspi.cyclo ./Drivers/BSP/STM32H573I-DK/stm32h573i_discovery_xspi.d ./Drivers/BSP/STM32H573I-DK/stm32h573i_discovery_xspi.o ./Drivers/BSP/STM32H573I-DK/stm32h573i_discovery_xspi.su
 
 .PHONY: clean-Drivers-2f-BSP-2f-STM32H573I-2d-DK
 

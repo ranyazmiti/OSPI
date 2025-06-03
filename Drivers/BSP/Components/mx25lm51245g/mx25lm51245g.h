@@ -18,8 +18,8 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef MX25LM51245G_H
-#define MX25LM51245G_H
+#ifndef MX25LM51245G_XSPI_H
+#define MX25LM51245G_XSPI_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -27,6 +27,12 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "mx25lm51245g_conf.h"
+#include "stm32h5xx_hal_xspi.h"
+
+
+// Pour XSPI_HandleTypeDef
+#include <stdint.h>            // Pour uint32_t, int32_t, etc.
+
 
 /** @addtogroup BSP
   * @{
@@ -363,7 +369,7 @@ int32_t MX25LM51245G_EnterPowerDown(XSPI_HandleTypeDef *Ctx, MX25LM51245G_Interf
 }
 #endif
 
-#endif /* MX25LM51245G_H */
+#endif /* MX25LM51245G_XSPI_H */
 
 /**
   * @}

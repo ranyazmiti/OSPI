@@ -36,6 +36,9 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "mx25lm51245g.h"
+#include "stm32h5xx_hal.h"
+#include <stdint.h>
+
 
 /** @addtogroup BSP
   * @{

@@ -1,0 +1,6 @@
+../Application/User/Core/lfs_config.c:12:13:xspi_init_if_needed	3
+../Application/User/Core/lfs_config.c:23:5:user_provided_block_device_read	2
+../Application/User/Core/lfs_config.c:33:5:user_provided_block_device_prog	2
+../Application/User/Core/lfs_config.c:43:5:user_provided_block_device_erase	2
+../Application/User/Core/lfs_config.c:52:5:user_provided_block_device_sync	2
+../Application/User/Core/lfs_config.c:77:6:lfs_config_init	1
