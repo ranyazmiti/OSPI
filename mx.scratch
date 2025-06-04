@@ -3,7 +3,7 @@
   <FileVersion>3.0</FileVersion>
   <Workspace>
     <WorkspaceType>Single-project</WorkspaceType>
-    <WorkspacePath>C:\Users\hp\Desktop\pfa\essai_OSPI\</WorkspacePath>
+    <WorkspacePath>C:\Users\hp\Desktop\pfa\OSPI-amalbranche\OSPI-amalbranche\</WorkspacePath>
     <underRoot>false</underRoot>
     <TrustZone>0</TrustZone>
     <HAL_Driver>C:\Users\hp\STM32Cube\Repository\STM32Cube_FW_H5_V1.5.0</HAL_Driver>
@@ -219,6 +219,18 @@
             <file>
                               
               <name>Drivers\STM32H5xx_HAL_Driver\Src\stm32h5xx_ll_dlyb.c</name>
+                              
+            </file>
+                        
+            <file>
+                              
+              <name>Drivers\STM32H5xx_HAL_Driver\Src\stm32h5xx_hal_uart.c</name>
+                              
+            </file>
+                        
+            <file>
+                              
+              <name>Drivers\STM32H5xx_HAL_Driver\Src\stm32h5xx_hal_uart_ex.c</name>
                               
             </file>
                         

@@ -1,5 +1,5 @@
-Drivers/STM32H5xx_HAL_Driver/stm32h5xx_hal_gpio.o: \
- C:/Users/hp/Desktop/pfa/OSPI-amalbranche/OSPI-amalbranche/Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_gpio.c \
+Application/User/Core/stm32h5xx_hal_uart.o: \
+ C:/Users/hp/Desktop/pfa/OSPI-amalbranche/OSPI-amalbranche/Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_uart.c \
  ../../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal.h \
  ../../Core/Inc/stm32h5xx_hal_conf.h \
  ../../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_rcc.h \

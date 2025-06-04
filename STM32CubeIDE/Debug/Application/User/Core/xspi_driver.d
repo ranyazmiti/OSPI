@@ -27,6 +27,8 @@ Application/User/Core/xspi_driver.o: \
  ../../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_pwr_ex.h \
  ../../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_xspi.h \
  ../../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_ll_dlyb.h \
+ ../../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_uart.h \
+ ../../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_uart_ex.h \
  ../../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_exti.h \
  ../../littlefs-2.10.2/lfs.h ../../littlefs-2.10.2/lfs_util.h \
  ../../littlefs-2.10.2/lfs_util.h ../Application/User/Core/lfs_config.h
@@ -58,6 +60,8 @@ Application/User/Core/xspi_driver.o: \
 ../../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_pwr_ex.h:
 ../../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_xspi.h:
 ../../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_ll_dlyb.h:
+../../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_uart.h:
+../../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_uart_ex.h:
 ../../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_exti.h:
 ../../littlefs-2.10.2/lfs.h:
 ../../littlefs-2.10.2/lfs_util.h:

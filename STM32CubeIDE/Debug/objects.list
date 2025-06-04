@@ -1,6 +1,8 @@
 "./Application/User/Core/lfs_config.o"
 "./Application/User/Core/main.o"
 "./Application/User/Core/stm32h5xx_hal_msp.o"
+"./Application/User/Core/stm32h5xx_hal_uart.o"
+"./Application/User/Core/stm32h5xx_hal_uart_ex.o"
 "./Application/User/Core/stm32h5xx_it.o"
 "./Application/User/Core/syscalls.o"
 "./Application/User/Core/sysmem.o"

@@ -5,8 +5,8 @@
 #include <string.h>
 
 #define BLOCK_SIZE      4096
-#define BLOCK_COUNT     (64UL * 1024 * 1024 / BLOCK_SIZE)
-#define OSPI_BASE_ADDR  0x90000000
+#define BLOCK_COUNT (8UL * 1024 * 1024 / 4096)
+// #define OSPI_BASE_ADDR  0x90000000  // Inutile en mode indirect
 
 // Initialisation automatique de l’XSPI
 static void xspi_init_if_needed(void) {
@@ -23,7 +23,7 @@ static void xspi_init_if_needed(void) {
 int user_provided_block_device_read(const struct lfs_config *c, lfs_block_t block,
                                     lfs_off_t offset, void *buffer, lfs_size_t size) {
     xspi_init_if_needed();
-    uint32_t addr = OSPI_BASE_ADDR + block * c->block_size + offset;
+    uint32_t addr = block * c->block_size + offset;
     if (BSP_XSPI_NOR_Read(0, buffer, addr, size) != BSP_ERROR_NONE) {
         return LFS_ERR_IO;
     }
@@ -33,7 +33,7 @@ int user_provided_block_device_read(const struct lfs_config *c, lfs_block_t bloc
 int user_provided_block_device_prog(const struct lfs_config *c, lfs_block_t block,
                                     lfs_off_t offset, const void *buffer, lfs_size_t size) {
     xspi_init_if_needed();
-    uint32_t addr = OSPI_BASE_ADDR + block * c->block_size + offset;
+    uint32_t addr = block * c->block_size + offset;
     if (BSP_XSPI_NOR_Write(0, buffer, addr, size) != BSP_ERROR_NONE) {
         return LFS_ERR_IO;
     }
@@ -42,7 +42,7 @@ int user_provided_block_device_prog(const struct lfs_config *c, lfs_block_t bloc
 
 int user_provided_block_device_erase(const struct lfs_config *c, lfs_block_t block) {
     xspi_init_if_needed();
-    uint32_t addr = OSPI_BASE_ADDR + block * c->block_size;
+    uint32_t addr = block * c->block_size;
     if (BSP_XSPI_NOR_Erase_Block(0, addr, BSP_XSPI_NOR_ERASE_4K) != BSP_ERROR_NONE) {
         return LFS_ERR_IO;
     }
@@ -77,4 +77,3 @@ struct lfs_config cfg = {
 void lfs_config_init(void) {
     xspi_init_if_needed();
 }
-

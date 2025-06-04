@@ -4,8 +4,8 @@
 #include "lfs.h"
 
 #define BLOCK_SIZE      4096
-#define BLOCK_COUNT     (64UL * 1024 * 1024 / BLOCK_SIZE)
-#define OSPI_BASE_ADDR  0x90000000
+#define BLOCK_COUNT (8UL * 1024 * 1024 / 4096)
+
 
 #ifdef __cplusplus
 extern "C" {

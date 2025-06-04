@@ -8,6 +8,8 @@ C_SRCS += \
 ../Application/User/Core/lfs_config.c \
 C:/Users/hp/Desktop/pfa/OSPI-amalbranche/OSPI-amalbranche/Core/Src/main.c \
 C:/Users/hp/Desktop/pfa/OSPI-amalbranche/OSPI-amalbranche/Core/Src/stm32h5xx_hal_msp.c \
+C:/Users/hp/Desktop/pfa/OSPI-amalbranche/OSPI-amalbranche/Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_uart.c \
+C:/Users/hp/Desktop/pfa/OSPI-amalbranche/OSPI-amalbranche/Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_uart_ex.c \
 C:/Users/hp/Desktop/pfa/OSPI-amalbranche/OSPI-amalbranche/Core/Src/stm32h5xx_it.c \
 ../Application/User/Core/syscalls.c \
 ../Application/User/Core/sysmem.c \
@@ -17,6 +19,8 @@ OBJS += \
 ./Application/User/Core/lfs_config.o \
 ./Application/User/Core/main.o \
 ./Application/User/Core/stm32h5xx_hal_msp.o \
+./Application/User/Core/stm32h5xx_hal_uart.o \
+./Application/User/Core/stm32h5xx_hal_uart_ex.o \
 ./Application/User/Core/stm32h5xx_it.o \
 ./Application/User/Core/syscalls.o \
 ./Application/User/Core/sysmem.o \
@@ -26,6 +30,8 @@ C_DEPS += \
 ./Application/User/Core/lfs_config.d \
 ./Application/User/Core/main.d \
 ./Application/User/Core/stm32h5xx_hal_msp.d \
+./Application/User/Core/stm32h5xx_hal_uart.d \
+./Application/User/Core/stm32h5xx_hal_uart_ex.d \
 ./Application/User/Core/stm32h5xx_it.d \
 ./Application/User/Core/syscalls.d \
 ./Application/User/Core/sysmem.d \
@@ -39,13 +45,17 @@ Application/User/Core/main.o: C:/Users/hp/Desktop/pfa/OSPI-amalbranche/OSPI-amal
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32H573xx -c -I../../Drivers/BSP/Components/mx25lm51245g -I../../Drivers/BSP/Components/mx25lm51245g -I../../littlefs-2.10.2 -I../../Drivers/BSP/STM32H573I-DK -I../../Drivers/BSP/Components -I../../Core/Inc -I../../Drivers/STM32H5xx_HAL_Driver/Inc -I../../Drivers/STM32H5xx_HAL_Driver/Src -I../../Drivers/STM32H5xx_HAL_Driver/Inc/Legacy -I../../Drivers/CMSIS/Device/ST/STM32H5xx/Include -I../../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 Application/User/Core/stm32h5xx_hal_msp.o: C:/Users/hp/Desktop/pfa/OSPI-amalbranche/OSPI-amalbranche/Core/Src/stm32h5xx_hal_msp.c Application/User/Core/subdir.mk
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32H573xx -c -I../../Drivers/BSP/Components/mx25lm51245g -I../../Drivers/BSP/Components/mx25lm51245g -I../../littlefs-2.10.2 -I../../Drivers/BSP/STM32H573I-DK -I../../Drivers/BSP/Components -I../../Core/Inc -I../../Drivers/STM32H5xx_HAL_Driver/Inc -I../../Drivers/STM32H5xx_HAL_Driver/Src -I../../Drivers/STM32H5xx_HAL_Driver/Inc/Legacy -I../../Drivers/CMSIS/Device/ST/STM32H5xx/Include -I../../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
+Application/User/Core/stm32h5xx_hal_uart.o: C:/Users/hp/Desktop/pfa/OSPI-amalbranche/OSPI-amalbranche/Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_uart.c Application/User/Core/subdir.mk
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32H573xx -c -I../../Drivers/BSP/Components/mx25lm51245g -I../../Drivers/BSP/Components/mx25lm51245g -I../../littlefs-2.10.2 -I../../Drivers/BSP/STM32H573I-DK -I../../Drivers/BSP/Components -I../../Core/Inc -I../../Drivers/STM32H5xx_HAL_Driver/Inc -I../../Drivers/STM32H5xx_HAL_Driver/Src -I../../Drivers/STM32H5xx_HAL_Driver/Inc/Legacy -I../../Drivers/CMSIS/Device/ST/STM32H5xx/Include -I../../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
+Application/User/Core/stm32h5xx_hal_uart_ex.o: C:/Users/hp/Desktop/pfa/OSPI-amalbranche/OSPI-amalbranche/Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_uart_ex.c Application/User/Core/subdir.mk
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32H573xx -c -I../../Drivers/BSP/Components/mx25lm51245g -I../../Drivers/BSP/Components/mx25lm51245g -I../../littlefs-2.10.2 -I../../Drivers/BSP/STM32H573I-DK -I../../Drivers/BSP/Components -I../../Core/Inc -I../../Drivers/STM32H5xx_HAL_Driver/Inc -I../../Drivers/STM32H5xx_HAL_Driver/Src -I../../Drivers/STM32H5xx_HAL_Driver/Inc/Legacy -I../../Drivers/CMSIS/Device/ST/STM32H5xx/Include -I../../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 Application/User/Core/stm32h5xx_it.o: C:/Users/hp/Desktop/pfa/OSPI-amalbranche/OSPI-amalbranche/Core/Src/stm32h5xx_it.c Application/User/Core/subdir.mk
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32H573xx -c -I../../Drivers/BSP/Components/mx25lm51245g -I../../Drivers/BSP/Components/mx25lm51245g -I../../littlefs-2.10.2 -I../../Drivers/BSP/STM32H573I-DK -I../../Drivers/BSP/Components -I../../Core/Inc -I../../Drivers/STM32H5xx_HAL_Driver/Inc -I../../Drivers/STM32H5xx_HAL_Driver/Src -I../../Drivers/STM32H5xx_HAL_Driver/Inc/Legacy -I../../Drivers/CMSIS/Device/ST/STM32H5xx/Include -I../../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 
 clean: clean-Application-2f-User-2f-Core
 
 clean-Application-2f-User-2f-Core:
-	-$(RM) ./Application/User/Core/lfs_config.cyclo ./Application/User/Core/lfs_config.d ./Application/User/Core/lfs_config.o ./Application/User/Core/lfs_config.su ./Application/User/Core/main.cyclo ./Application/User/Core/main.d ./Application/User/Core/main.o ./Application/User/Core/main.su ./Application/User/Core/stm32h5xx_hal_msp.cyclo ./Application/User/Core/stm32h5xx_hal_msp.d ./Application/User/Core/stm32h5xx_hal_msp.o ./Application/User/Core/stm32h5xx_hal_msp.su ./Application/User/Core/stm32h5xx_it.cyclo ./Application/User/Core/stm32h5xx_it.d ./Application/User/Core/stm32h5xx_it.o ./Application/User/Core/stm32h5xx_it.su ./Application/User/Core/syscalls.cyclo ./Application/User/Core/syscalls.d ./Application/User/Core/syscalls.o ./Application/User/Core/syscalls.su ./Application/User/Core/sysmem.cyclo ./Application/User/Core/sysmem.d ./Application/User/Core/sysmem.o ./Application/User/Core/sysmem.su ./Application/User/Core/xspi_driver.cyclo ./Application/User/Core/xspi_driver.d ./Application/User/Core/xspi_driver.o ./Application/User/Core/xspi_driver.su
+	-$(RM) ./Application/User/Core/lfs_config.cyclo ./Application/User/Core/lfs_config.d ./Application/User/Core/lfs_config.o ./Application/User/Core/lfs_config.su ./Application/User/Core/main.cyclo ./Application/User/Core/main.d ./Application/User/Core/main.o ./Application/User/Core/main.su ./Application/User/Core/stm32h5xx_hal_msp.cyclo ./Application/User/Core/stm32h5xx_hal_msp.d ./Application/User/Core/stm32h5xx_hal_msp.o ./Application/User/Core/stm32h5xx_hal_msp.su ./Application/User/Core/stm32h5xx_hal_uart.cyclo ./Application/User/Core/stm32h5xx_hal_uart.d ./Application/User/Core/stm32h5xx_hal_uart.o ./Application/User/Core/stm32h5xx_hal_uart.su ./Application/User/Core/stm32h5xx_hal_uart_ex.cyclo ./Application/User/Core/stm32h5xx_hal_uart_ex.d ./Application/User/Core/stm32h5xx_hal_uart_ex.o ./Application/User/Core/stm32h5xx_hal_uart_ex.su ./Application/User/Core/stm32h5xx_it.cyclo ./Application/User/Core/stm32h5xx_it.d ./Application/User/Core/stm32h5xx_it.o ./Application/User/Core/stm32h5xx_it.su ./Application/User/Core/syscalls.cyclo ./Application/User/Core/syscalls.d ./Application/User/Core/syscalls.o ./Application/User/Core/syscalls.su ./Application/User/Core/sysmem.cyclo ./Application/User/Core/sysmem.d ./Application/User/Core/sysmem.o ./Application/User/Core/sysmem.su ./Application/User/Core/xspi_driver.cyclo ./Application/User/Core/xspi_driver.d ./Application/User/Core/xspi_driver.o ./Application/User/Core/xspi_driver.su
 
 .PHONY: clean-Application-2f-User-2f-Core
 

@@ -29,10 +29,12 @@
 
 
 
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+
 #define USER_LED2        GPIO_PIN_8
 #define USER_LED2_GPIO_Port  GPIOI
 /* USER CODE END PTD */
@@ -54,6 +56,8 @@ DMA_HandleTypeDef handle_GPDMA1_Channel0;
 
 XSPI_HandleTypeDef hospi1;
 
+UART_HandleTypeDef huart4;
+
 /* USER CODE BEGIN PV */
 extern struct lfs_config cfg;
 /* USER CODE END PV */
@@ -64,12 +68,18 @@ static void MX_GPIO_Init(void);
 static void MX_GPDMA1_Init(void);
 static void MX_ICACHE_Init(void);
 static void MX_OCTOSPI1_Init(void);
+static void MX_UART4_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+int __io_putchar(int ch)
+{
+    HAL_UART_Transmit(&huart4, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
+    return ch;
+}
 
 /* USER CODE END 0 */
 
@@ -90,6 +100,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
+  printf("UART4 initialized and ready!\r\n");
 
   /* USER CODE END Init */
 
@@ -105,7 +116,7 @@ int main(void)
   MX_GPDMA1_Init();
   MX_ICACHE_Init();
   MX_OCTOSPI1_Init();
-
+  MX_UART4_Init();
   /* USER CODE BEGIN 2 */
   void blink_error(int times) {
       for (int i = 0; i < times; i++) {
@@ -117,6 +128,7 @@ int main(void)
       HAL_GPIO_WritePin(USER_LED2_GPIO_Port, USER_LED2, GPIO_PIN_RESET);
       while (1);
   }
+
   lfs_t lfs;
 
   lfs_config_init(); // Initialisation XSPI
@@ -134,7 +146,7 @@ int main(void)
   }
 
   lfs_file_t file;
-  const char *text = "Bonjour OSPI !";
+  const char *text = "Bonjour OSPI !\r\n";
 
   err = lfs_file_open(&lfs, &file, "monfichier.txt", LFS_O_WRONLY | LFS_O_CREAT);
   if (err) {
@@ -149,11 +161,15 @@ int main(void)
       blink_error(6);  // erreur fermeture
   }
 
+  // Envoi du texte via UART4
+  if (HAL_UART_Transmit(&huart4, (uint8_t *)text, strlen(text), HAL_MAX_DELAY) != HAL_OK) {
+      blink_error(7);  // erreur UART
+  }
 
   // OK → clignote normalement toutes les 5s
   while (1) {
       HAL_GPIO_TogglePin(USER_LED2_GPIO_Port, USER_LED2);
-      HAL_Delay(5000);
+      HAL_Delay(1000);
   }
   /* USER CODE END 2 */
 
@@ -364,6 +380,54 @@ static void MX_OCTOSPI1_Init(void)
 }
 
 /**
+  * @brief UART4 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_UART4_Init(void)
+{
+
+  /* USER CODE BEGIN UART4_Init 0 */
+
+  /* USER CODE END UART4_Init 0 */
+
+  /* USER CODE BEGIN UART4_Init 1 */
+
+  /* USER CODE END UART4_Init 1 */
+  huart4.Instance = UART4;
+  huart4.Init.BaudRate = 115200;
+  huart4.Init.WordLength = UART_WORDLENGTH_8B;
+  huart4.Init.StopBits = UART_STOPBITS_1;
+  huart4.Init.Parity = UART_PARITY_NONE;
+  huart4.Init.Mode = UART_MODE_TX_RX;
+  huart4.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart4.Init.OverSampling = UART_OVERSAMPLING_16;
+  huart4.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  huart4.Init.ClockPrescaler = UART_PRESCALER_DIV1;
+  huart4.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  if (HAL_UART_Init(&huart4) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_UARTEx_SetTxFifoThreshold(&huart4, UART_TXFIFO_THRESHOLD_1_8) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_UARTEx_SetRxFifoThreshold(&huart4, UART_RXFIFO_THRESHOLD_1_8) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_UARTEx_DisableFifoMode(&huart4) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN UART4_Init 2 */
+
+  /* USER CODE END UART4_Init 2 */
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -375,6 +439,7 @@ static void MX_GPIO_Init(void)
   /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOG_CLK_ENABLE();
   __HAL_RCC_GPIOE_CLK_ENABLE();
   __HAL_RCC_GPIOI_CLK_ENABLE();
@@ -382,17 +447,16 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
-  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOI, GPIO_PIN_8, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(led2_GPIO_Port, led2_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : USER_LED2_Pin */
-  GPIO_InitStruct.Pin = USER_LED2;
+  /*Configure GPIO pin : led2_Pin */
+  GPIO_InitStruct.Pin = led2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(USER_LED2_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(led2_GPIO_Port, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
   /* USER CODE END MX_GPIO_Init_2 */
